@@ -16,6 +16,7 @@ import java.util.*;
 @RestController
 public class CustomerController {
 
+
     private static String BASE_URL = "http://order:8091/order" ;
 
     @Autowired
@@ -23,6 +24,10 @@ public class CustomerController {
 
     @Autowired
     private Environment environment;
+
+    public void setRestTemplate(final RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     @GetMapping(value = "/get", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XHTML_XML_VALUE, MediaType.TEXT_XML_VALUE,MediaType.TEXT_PLAIN_VALUE, MediaType.TEXT_HTML_VALUE}, consumes = {"*/*"} )
     @ResponseBody
