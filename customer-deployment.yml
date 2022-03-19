@@ -13,17 +13,21 @@ spec:
         app: customer
     spec:
       containers:
-      - name: customer
-        image: "getbharat/customer:latest"
-        imagePullPolicy: IfNotPresent
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-        ports:
-        - containerPort: 8090
-        env:
-          - name: order
-            value: "10.102.166.91:8091"
-
+        - name: customer
+          image: "getbharat/customer:latest"
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8090
+              name: app
+            - containerPort: 8000
+              name: debug
+          env:
+            - name: ORDER_SERVICE
+              value: "order"
+            - name: "JAVA_OPTS"
+              value: "-agentlib:jdwp=server=y,transport=dt_socket,address=*:8000,suspend=n"
 
