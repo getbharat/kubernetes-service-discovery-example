@@ -14,7 +14,8 @@
 	<name>order</name>
 	<description>Orders micro service</description>
 	<properties>
-		<java.version>11</java.version>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
 		<file.finalName>order</file.finalName>
 	</properties>
 	<dependencies>
