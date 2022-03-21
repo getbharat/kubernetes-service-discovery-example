@@ -16,7 +16,6 @@ import java.util.*;
 @RestController
 public class CustomerController {
 
-
     private static String BASE_URL = "http://order:8091/order" ;
 
     @Autowired
