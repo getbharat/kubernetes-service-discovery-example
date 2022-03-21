@@ -2,6 +2,7 @@ package com.ecom.customer.rest;
 
 import com.ecom.customer.models.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,15 +16,13 @@ import java.util.*;
 @RestController
 public class CustomerController {
 
-    private static final String BASE_URL = "http://order:8091/order" ;
+    private static String BASE_URL = "http://order:8091/order" ;
 
     @Autowired
     RestTemplate restTemplate;
 
-    public void setRestTemplate(final RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
-
+    @Autowired
+    private Environment environment;
 
     @GetMapping(value = "/get", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XHTML_XML_VALUE, MediaType.TEXT_XML_VALUE,MediaType.TEXT_PLAIN_VALUE, MediaType.TEXT_HTML_VALUE}, consumes = {"*/*"} )
     @ResponseBody
@@ -44,6 +43,9 @@ public class CustomerController {
         final HttpEntity<Object> entity = new HttpEntity<>(headers);
         final Map<String, String> pathParams = new HashMap<>();
         pathParams.put("customerId", customerId);
+        if(environment != null && environment.getProperty("order") != null){
+            BASE_URL = environment.getProperty("order")+"/order";
+        }
         final String url = UriComponentsBuilder.fromHttpUrl(BASE_URL).path("/get/{customerId}").buildAndExpand(pathParams).encode().toUriString();
         final ResponseEntity<Object[]> responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, Object[].class);
         final Object[] objects = responseEntity.getBody();
