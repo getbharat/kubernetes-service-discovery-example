@@ -1,0 +1,23 @@
+version: '3'
+services:
+  order-service:
+    image: order:0.0.1
+    ports:
+      - "8091:8091"
+    container_name: order
+    networks:
+      - kubernetes-service-discovery-example
+
+  customer-service:
+    image: customer:0.0.1
+    ports:
+      - "8090:8090"
+    container_name: customer
+    networks:
+      - kubernetes-service-discovery-example
+    depends_on:
+      - order-service
+
+networks:
+  kubernetes-service-discovery-example:
+    driver: bridge
