@@ -14,24 +14,14 @@
     <name>customer</name>
     <description>Customers micro service</description>
     <properties>
-        <java.version>11</java.version>
-        <jackson.xml.version>2.13.2</jackson.xml.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <file.finalName>customer</file.finalName>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>${jackson.xml.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.xml.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
