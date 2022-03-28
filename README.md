@@ -17,7 +17,7 @@
  - Apply order deployment file using command ``kubectl apply -f order-deployment.yml``
  - Above command will create a ClusterIP service.
  - Get ClusterIP service's ip address, get it using ``kubectl get services`` and ``kubectl describe service {SERVICE_NAME}`` - use service name that you want to be described.
- -  Replace the [value](https://github.com/getbharat/kubernetes-service-discovery-example/blob/master/customer-deployment.yml#L30) by ClusterIP ip address and port 8091. Make change in order-deployment.yml, replace [port](https://github.com/getbharat/kubernetes-service-discovery-example/blob/master/order-deployment.yml#L36) by 8091. Alternatively, use name instead of the IP address. 
+ -  Replace the [value](https://github.com/getbharat/kubernetes-service-discovery-example/blob/master/customer-deployment.yml#L30) by the ClusterIP address and port 8091. Also, make a change in order-deployment.yml, replace [port](https://github.com/getbharat/kubernetes-service-discovery-example/blob/master/order-deployment.yml#L36) by 8091. Alternatively, use name instead of the IP address. 
  -  Apply deployment file using command ``kubectl apply -f customer-deployment.yml``
  -  Use port forwarding (not recommended) to access the urls metioned in deployment using docker compose section. ```kubectl port-forward deployment/customer 8090:8090``` and ``kubectl port-forward deployment/order 8091:8091``
 
