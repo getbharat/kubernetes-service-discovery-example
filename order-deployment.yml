@@ -22,6 +22,14 @@ spec:
               cpu: "500m"
           ports:
             - containerPort: 8091
+              name: order-app
+            - containerPort: 5000
+              name: debug
+          env:
+            - name: "JAVA_OPTS"
+          value: "-agentlib:jdwp=server=y,transport=dt_socket,address=*:5000,suspend=n"
+
+
 
 ---
 apiVersion: v1
